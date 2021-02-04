@@ -10,15 +10,18 @@ const {dispatch} = store;
 
 const {inc, dec, rnd} = bindActionCreators(actions, dispatch);
 
-document.getElementById("inc").addEventListener("click", inc);
-document.getElementById("dec").addEventListener("click", dec);
-document.getElementById("rnd").addEventListener("click", () => {
-    const value = Math.floor(Math.random() * 10) * (Math.random() > 0.5 ? 1 : -1);
-    rnd(value);
-});
-
 const update = () => {
-    document.getElementById("counter").textContent = store.getState().toString();
+    ReactDOM.render(<Counter
+        counter={store.getState()}
+        inc={inc}
+        dec={dec}
+        rnd={() => {
+            const value = Math.floor(Math.random() * 10) * (Math.random() > 0.5 ? 1 : -1);
+            rnd(value);
+        }}
+    />, document.getElementById("root"));
 };
+
+update();
 
 store.subscribe(update);

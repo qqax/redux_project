@@ -1,14 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Counter = () => {
+const Counter = ({counter, inc, dec, rnd}) => {
     return (
         <div className="jumbotron">
-            <h1>0</h1>
-            <button className="btn btn-primary">DEC</button>
-            <button className="btn btn-primary">INC</button>
-            <button className="btn btn-primary">RND</button>
+            <h1>{counter}</h1>
+            <button onClick={dec} className="btn btn-primary">DEC</button>
+            <button onClick={inc} className="btn btn-primary">INC</button>
+            <button onClick={rnd} className="btn btn-primary">RND</button>
         </div>
     );
+};
+
+Counter.propTypes = {
+    counter: PropTypes.number,
+    inc: PropTypes.func,
+    dec: PropTypes.func,
+    rnd: PropTypes.func
 };
 
 export default Counter;
